@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: risk-service
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: risk-service
+
+  template:
+    metadata:
+      labels:
+        app: risk-service
+
+    spec:
+      containers:
+      - name: risk-service
+        image: risk-service:latest
+        imagePullPolicy: Never
+
+        ports:
+        - containerPort: 8000
+
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
